@@ -6,7 +6,7 @@ Globals:
   Function:
     Timeout: 10
     MemorySize: 256
-    Runtime: dotnet9
+    Runtime: dotnet8
     Architectures:
       - x86_64
 

@@ -1,10 +1,23 @@
-public class Entrada
-{
-    public string Mensagem { get; set; }
-}
+using System;
+using Amazon.Lambda.Core;
+using Newtonsoft.Json;
+using Humanizer;
+using LambdaTestApp.Models;
 
-public string FunctionHandler(Entrada input, ILambdaContext context)
+[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
+
+namespace LambdaTestApp
 {
-    var json = JsonConvert.SerializeObject(input);
-    return $"Olá da Lambda em .NET 9! Entrada: {json}. Agora são {DateTime.Now.Humanize()}!";
+    public class Function
+    {
+        public ResponseModel FunctionHandler(object input, ILambdaContext context)
+        {
+            var json = JsonConvert.SerializeObject(input);
+            return new ResponseModel
+            {
+                Mensagem = $"Olá da Lambda em .NET 9! Entrada: {json}",
+                Data = DateTime.Now
+            };
+        }
+    }
 }

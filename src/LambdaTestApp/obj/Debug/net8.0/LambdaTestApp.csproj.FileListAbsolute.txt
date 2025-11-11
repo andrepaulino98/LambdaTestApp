@@ -15,3 +15,6 @@ D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\refint\LambdaTestAp
 D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\LambdaTestApp.pdb
 D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\LambdaTestApp.genruntimeconfig.cache
 D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\ref\LambdaTestApp.dll
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\LambdaTestApp.sourcelink.json
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Debug\net8.0\Humanizer.dll
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Debug\net8.0\Newtonsoft.Json.dll
