@@ -29,7 +29,12 @@ pipeline {
         stage('Build with AWS SAM') {
             steps {
                 echo "🏗️ Gerando artefatos SAM..."
-                sh 'sam build'
+
+                sh '''
+                export PATH="$PATH:/var/lib/jenkins/.dotnet/tools"
+                sam build
+                
+                '''
             }
         }
 
