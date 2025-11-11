@@ -31,9 +31,8 @@ pipeline {
                 echo "🏗️ Gerando artefatos SAM..."
 
                 sh '''
-                export PATH="$PATH:/var/lib/jenkins/.dotnet/tools"
-                sam build
-                
+                  sam build
+               
                 '''
             }
         }
