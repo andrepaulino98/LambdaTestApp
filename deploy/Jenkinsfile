@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        AWS_DEFAULT_REGION = 'us-east-1'
+        AWS_DEFAULT_REGION = 'sa-east-1'
         DOTNET_VERSION = '9.0'
         SAM_STACK_PREFIX = 'lambda-testapp'
         DOTNET_ROOT = "/usr/share/dotnet"
