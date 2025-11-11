@@ -1,0 +1,8 @@
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Release\net8.0\publish\LambdaTestApp.deps.json
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Release\net8.0\publish\LambdaTestApp.runtimeconfig.json
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Release\net8.0\publish\LambdaTestApp.pdb
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Release\net8.0\publish\Amazon.Lambda.Core.dll
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Release\net8.0\publish\Amazon.Lambda.Serialization.SystemTextJson.dll
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Release\net8.0\publish\Humanizer.dll
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Release\net8.0\publish\Newtonsoft.Json.dll
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Release\net8.0\publish\LambdaTestApp.dll

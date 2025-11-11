@@ -1,0 +1,17 @@
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Debug\net8.0\LambdaTestApp.deps.json
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Debug\net8.0\LambdaTestApp.runtimeconfig.json
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Debug\net8.0\LambdaTestApp.dll
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Debug\net8.0\LambdaTestApp.pdb
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Debug\net8.0\Amazon.Lambda.Core.dll
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\bin\Debug\net8.0\Amazon.Lambda.Serialization.SystemTextJson.dll
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\LambdaTestApp.csproj.AssemblyReference.cache
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\LambdaTestApp.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\LambdaTestApp.AssemblyInfoInputs.cache
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\LambdaTestApp.AssemblyInfo.cs
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\LambdaTestApp.csproj.CoreCompileInputs.cache
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\LambdaTe.1A46C1CA.Up2Date
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\LambdaTestApp.dll
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\refint\LambdaTestApp.dll
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\LambdaTestApp.pdb
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\LambdaTestApp.genruntimeconfig.cache
+D:\Projetos\LambdaTestApp\src\LambdaTestApp\obj\Debug\net8.0\ref\LambdaTestApp.dll
