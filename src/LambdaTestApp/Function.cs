@@ -1,3 +1,4 @@
+using System;
 using Amazon.Lambda.Core;
 using Newtonsoft.Json;
 using Humanizer;
@@ -5,19 +6,18 @@ using LambdaTestApp.Models;
 
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
 
-namespace LambdaTestApp;
-
-public class Function
+namespace LambdaTestApp
 {
-    public ResponseModel FunctionHandler(IDictionary<string, string>? input, ILambdaContext context)
+    public class Function
     {
-        var now = DateTime.UtcNow;
-
-        return new ResponseModel
+        public ResponseModel FunctionHandler(object input, ILambdaContext context)
         {
-            Message = "Olá do .NET 8 rodando na AWS Lambda! 🚀",
-            Now = now,
-            HumanizedTime = now.Humanize(false)
-        };
+            var json = JsonConvert.SerializeObject(input);
+            return new ResponseModel
+            {
+                Mensagem = $"Olá da Lambda em .NET 9! Entrada: {json}",
+                Data = DateTime.Now
+            };
+        }
     }
 }
