@@ -1,0 +1,72 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_DEFAULT_REGION = 'sa-east-1'
+        DOTNET_VERSION = '9.0'
+        SAM_STACK_PREFIX = 'lambda-testapp'
+        DOTNET_ROOT = "/usr/share/dotnet"
+        PATH = "/usr/share/dotnet:/var/lib/jenkins/.dotnet/tools:${env.PATH}"
+    }
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+                echo "📦 Branch atual: ${env.BRANCH_NAME}"
+            }
+        }
+
+        stage('Restore & Build') {
+            steps {
+                dir('src/LambdaTestApp') {
+                    echo "🔧 Restaurando dependências e compilando..."
+                    sh 'dotnet restore'
+                    sh 'dotnet build --configuration Release'
+                }
+            }
+        }
+
+        stage('Build with AWS SAM') {
+            steps {
+                echo "🏗️ Gerando artefatos SAM..."
+
+                sh '''
+                  sam build
+               
+                '''
+            }
+        }
+
+        stage('Deploy with AWS SAM') {
+            steps {
+                script {
+                    def stageName = env.BRANCH_NAME == 'master' ? 'prod' : env.BRANCH_NAME
+                    def stackName = "${SAM_STACK_PREFIX}-${stageName}"
+
+                    echo "🚀 Fazendo deploy da função Lambda existente (${stackName}) para ambiente: ${stageName}"
+
+                    sh """
+                        sam deploy \
+                            --stack-name ${stackName} \
+                            --capabilities CAPABILITY_IAM \
+                            --parameter-overrides Stage=${stageName} \
+                            --resolve-s3 \
+                            --no-confirm-changeset \
+                            --no-fail-on-empty-changeset
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "✅ Deploy realizado com sucesso para ${env.BRANCH_NAME}!"
+        }
+        failure {
+            echo "❌ Falha no deploy para ${env.BRANCH_NAME}."
+        }
+    }
+}

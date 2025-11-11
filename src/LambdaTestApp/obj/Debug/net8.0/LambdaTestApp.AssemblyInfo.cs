@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LambdaTestApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0c11473a6893b5c9f28ea17b2df377502d60b58")]
 [assembly: System.Reflection.AssemblyProductAttribute("LambdaTestApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LambdaTestApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
