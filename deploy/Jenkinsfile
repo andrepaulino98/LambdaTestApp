@@ -14,14 +14,14 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scm
-                echo "📦 Branch atual: ${env.BRANCH_NAME}"
+                echo "Branch atual: ${env.BRANCH_NAME}"
             }
         }
 
         stage('Restore & Build') {
             steps {
                 dir('src/LambdaTestApp') {
-                    echo "🔧 Restaurando dependências e compilando..."
+                    echo "Restaurando dependências e compilando..."
                     sh 'dotnet restore'
                     sh 'dotnet build --configuration Release'
                 }
@@ -30,7 +30,7 @@ pipeline {
 
         stage('Build with AWS SAM') {
             steps {
-                echo "🏗️ Gerando artefatos SAM..."
+                echo "Gerando artefatos SAM..."
 
                 sh '''
                   sam build
@@ -45,7 +45,7 @@ pipeline {
                     def stageName = env.BRANCH_NAME == 'master' ? 'prod' : env.BRANCH_NAME
                     def stackName = "${SAM_STACK_PREFIX}-${stageName}"
 
-                    echo "🚀 Fazendo deploy da função Lambda existente (${stackName}) para ambiente: ${stageName}"
+                    echo "Fazendo deploy da função Lambda existente (${stackName}) para ambiente: ${stageName}"
 
                     sh """
                         sam deploy \
@@ -63,10 +63,10 @@ pipeline {
 
     post {
         success {
-            echo "✅ Deploy realizado com sucesso para ${env.BRANCH_NAME}!"
+            echo "Deploy realizado com sucesso para ${env.BRANCH_NAME}!"
         }
         failure {
-            echo "❌ Falha no deploy para ${env.BRANCH_NAME}."
+            echo "Falha no deploy para ${env.BRANCH_NAME}."
         }
     }
 }
