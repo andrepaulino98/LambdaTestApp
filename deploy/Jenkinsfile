@@ -44,7 +44,13 @@ pipeline {
                 }
             }
         }
-
+        stage('Check dotnet') {
+            steps {
+                sh "which dotnet || true"
+                sh "dotnet --info || true"
+                sh "echo PATH=\$PATH"
+            }
+        }   
         stage('Build Function') {
             steps {
                 sh """
