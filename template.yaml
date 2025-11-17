@@ -24,21 +24,17 @@ Resources:
   LambdaTestAppFunction:
     Type: AWS::Serverless::Function
     Properties:
-
-      # Nome da função gerado automaticamente baseado no Stage
+    # Nome da função gerado automaticamente baseado no Stage
       
 
       CodeUri: src/LambdaTestApp/
       Handler: LambdaTestApp::LambdaTestApp.Function::FunctionHandler
       Description: Função Lambda .NET 9 para testes automáticos
-
       Environment:
         Variables:
           STAGE: !Ref Stage
-
       Policies:
         - AWSLambda_FullAccess
-
       Tags:
         # Tag gerada automaticamente, igual ao que você pega da stack
         Name: !Sub "${Stage}-webhook"

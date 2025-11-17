@@ -26,24 +26,21 @@ pipeline {
             }
         }
 
-        stage('Discover Function Name From Stack Tags') {
+        stage('Discover WebhookName From Stack Output') {
             steps {
                 script {
-                    FUNCTION_NAME = sh(
+                    WEBHOOK_NAME = sh(
                         script: """
-                            aws cloudformation describe-stacks \
-                                --stack-name ${STACK_NAME} \
-                                --query "Stacks[0].Tags[?Key=='Name'].Value | [0]" \
-                                --output text
+                            aws cloudformation describe-stacks --stack-name ${STACK_NAME} --query "Stacks[0].Outputs[?OutputKey=='WebhookName'].OutputValue" --output text
                         """,
                         returnStdout: true
                     ).trim()
 
-                    if (!FUNCTION_NAME || FUNCTION_NAME == "None") {
-                        error("A tag 'Name' não foi encontrada na stack ${STACK_NAME}")
+                    if (!WEBHOOK_NAME || WEBHOOK_NAME == "None") {
+                        error("O output 'WebhookName' não foi encontrado na stack ${STACK_NAME}")
                     }
 
-                    echo "Função detectada: ${FUNCTION_NAME}"
+                    echo "WebhookName detectado: ${WEBHOOK_NAME}"
                 }
             }
         }
