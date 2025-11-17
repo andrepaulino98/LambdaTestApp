@@ -32,6 +32,7 @@ pipeline {
                       --stack-name ${STACK_NAME} \
                       --capabilities CAPABILITY_IAM \
                       --no-confirm-changeset \
+                      --resolve-s3 \
                       --parameter-overrides Stage=${STAGE}
                 """
             }
