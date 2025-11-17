@@ -8,6 +8,8 @@ pipeline {
                 script {
                     if (env.BRANCH_NAME == "dev") {
                         STAGE = "dev"
+                    } else if (env.BRANCH_NAME == "qa") {
+                        STAGE = "qa"
                     } else if (env.BRANCH_NAME == "hmg") {
                         STAGE = "hmg"
                     } else if (env.BRANCH_NAME == "prod") {
@@ -17,15 +19,38 @@ pipeline {
                     }
 
                     STACK_NAME = "lambda-testapp-${STAGE}"
-
-                    echo "Branch detectado: ${env.BRANCH_NAME}"
-                    echo "Stage definida: ${STAGE}"
-                    echo "Stack usada: ${STACK_NAME}"
                 }
             }
         }
 
-        stage('Deploy') {
+        stage('Discover Function Name From Stack Tag') {
+            steps {
+                script {
+                    FUNCTION_NAME = sh(
+                        script: """
+                            aws cloudformation describe-stacks \
+                                --stack-name ${STACK_NAME} \
+                                --query "Stacks[0].Tags[?Key=='Name'].Value | [0]" \
+                                --output text
+                        """,
+                        returnStdout: true
+                    ).trim()
+
+                    echo "Função detectada na stack: ${FUNCTION_NAME}"
+                }
+            }
+        }
+
+        stage('Build Function') {
+            steps {
+                sh """
+                    sam build --use-container \
+                      --parameter-overrides Stage=${STAGE}
+                """
+            }
+        }
+
+        stage('Deploy Function') {
             steps {
                 sh """
                     sam deploy \
