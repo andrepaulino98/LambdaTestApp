@@ -3,14 +3,14 @@ pipeline {
 
     stages {
 
-        stage('Define Stage') {
+        stage('Detect Stage') {
             steps {
                 script {
-                    if (env.BRANCH_NAME == "main") {
+                    if (env.BRANCH_NAME == "dev") {
                         STAGE = "dev"
-                    } else if (env.BRANCH_NAME.startsWith("release")) {
+                    } else if (env.BRANCH_NAME == "hmg") {
                         STAGE = "hmg"
-                    } else if (env.BRANCH_NAME == "prod" || env.BRANCH_NAME =~ /^v?\d+\.\d+\.\d+$/) {
+                    } else if (env.BRANCH_NAME == "prod") {
                         STAGE = "prod"
                     } else {
                         error("Branch '${env.BRANCH_NAME}' não mapeada.")
@@ -18,9 +18,9 @@ pipeline {
 
                     STACK_NAME = "lambda-testapp-${STAGE}"
 
-                    echo "Branch: ${env.BRANCH_NAME}"
-                    echo "Stage detectada: ${STAGE}"
-                    echo "Stack selecionada: ${STACK_NAME}"
+                    echo "Branch detectado: ${env.BRANCH_NAME}"
+                    echo "Stage definida: ${STAGE}"
+                    echo "Stack usada: ${STACK_NAME}"
                 }
             }
         }
@@ -28,9 +28,11 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh """
-                    sls deploy \
-                      --stage ${STAGE} \
-                      --stack-name ${STACK_NAME}
+                    sam deploy \
+                      --stack-name ${STACK_NAME} \
+                      --capabilities CAPABILITY_IAM \
+                      --no-confirm-changeset \
+                      --parameter-overrides Stage=${STAGE}
                 """
             }
         }
