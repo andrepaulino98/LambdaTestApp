@@ -19,11 +19,14 @@ pipeline {
                     }
 
                     STACK_NAME = "lambda-testapp-${STAGE}"
+
+                    echo "Stage detectada = ${STAGE}"
+                    echo "Stack            = ${STACK_NAME}"
                 }
             }
         }
 
-        stage('Discover Function Name From Stack Tag') {
+        stage('Discover Function Name From Stack Tags') {
             steps {
                 script {
                     FUNCTION_NAME = sh(
@@ -36,7 +39,11 @@ pipeline {
                         returnStdout: true
                     ).trim()
 
-                    echo "Função detectada na stack: ${FUNCTION_NAME}"
+                    if (!FUNCTION_NAME || FUNCTION_NAME == "None") {
+                        error("A tag 'Name' não foi encontrada na stack ${STACK_NAME}")
+                    }
+
+                    echo "Função detectada: ${FUNCTION_NAME}"
                 }
             }
         }
@@ -44,7 +51,7 @@ pipeline {
         stage('Build Function') {
             steps {
                 sh """
-                    sam build --use-container \
+                    sam build \
                       --parameter-overrides Stage=${STAGE}
                 """
             }
