@@ -1,8 +1,9 @@
 pipeline {
     agent any
     environment {
-        PATH = "/usr/share/dotnet:/usr/bin:${PATH}"
-    }
+        PATH = "/usr/share/dotnet:/usr/bin:/var/lib/jenkins/.dotnet/tools:${PATH}"
+    }   
+
 
 
     stages {
