@@ -15,7 +15,7 @@ namespace LambdaTestApp
             var json = JsonConvert.SerializeObject(input);
             return new ResponseModel
             {
-                Mensagem = $"Olá da Lambda em .NET 10! Entrada: {json}",
+                Mensagem = $"Olá da Lambda em .NET 8 Atual! Entrada: {json}",
                 Data = DateTime.Now
             };
         }
